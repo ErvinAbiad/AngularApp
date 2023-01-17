@@ -1,0 +1,24 @@
+<div class="d-flex flex-row bd-highlight mb-3">
+  <div class="p-2 w-50 bd-highlight">
+    <div class="input-group mb-3">
+      <span class="input-group-text">Transaction Name</span>
+      <input type="text" class="form-control" required [(ngModel)]="transactionModel.TransactionName">
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text">Cost</span>
+      <input type="number" class="form-control" min="0" required [(ngModel)]="transactionModel.Cost">
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text">Date</span>
+      <input type="date" class="form-control" required [ngModel]="transactionModel.Date | date:'yyyy-MM-dd'"
+        (ngModelChange)="transactionModel.Date = $event" max="{{minDate | date:'yyyy-MM-dd'}}">
+    </div>
+  </div>
+</div>
+<button type="button" (click)="addTransaction()" *ngIf="transactionModel.TransactionID===0" class="btn btn-primary">
+  Create
+</button>
+
+<button type="button" (click)="updateTransaction()" *ngIf="transactionModel.TransactionID!==0" class="btn btn-primary">
+  Update
+</button>
